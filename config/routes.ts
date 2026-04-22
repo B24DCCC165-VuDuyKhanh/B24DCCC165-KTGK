@@ -60,6 +60,12 @@
 	// 	component: './NganHangCauHoi',
 	// 	icon: 'BookOutlined',
 	// },
+	{
+		path: '/quan-ly-phong-hoc',
+		name: 'Quản lý phòng học',
+		component: './QuanLyPhongHoc',
+		icon: 'BankOutlined',
+	},
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',
