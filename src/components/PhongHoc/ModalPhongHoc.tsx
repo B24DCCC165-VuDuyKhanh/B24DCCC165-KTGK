@@ -31,7 +31,6 @@ const ModalPhongHoc: React.FC<Props> = ({
     >
       <Form form={form} layout="vertical" validateTrigger="onChange">
         
-        {/* MÃ PHÒNG */}
         <Form.Item
           name="maPhong"
           label="Mã phòng"
@@ -60,7 +59,6 @@ const ModalPhongHoc: React.FC<Props> = ({
           <Input />
         </Form.Item>
 
-        {/* TÊN PHÒNG */}
         <Form.Item
           name="tenPhong"
           label="Tên phòng"
@@ -89,20 +87,27 @@ const ModalPhongHoc: React.FC<Props> = ({
           <Input />
         </Form.Item>
 
-        {/* SỐ CHỖ */}
         <Form.Item
-          name="soCho"
-          label="Số chỗ"
-          rules={[
+        name="soCho"
+        label="Số chỗ"
+        rules={[
             { required: true, message: 'Không được để trống' },
-            { type: 'number', min: 10, message: 'Tối thiểu 10 chỗ' },
-            { type: 'number', max: 200, message: 'Tối đa 200 chỗ' },
-          ]}
+            {
+            validator: (_, value) => {
+                if (value < 10) {
+                return Promise.reject('Tối thiểu 10 chỗ');
+                }
+                if (value > 200) {
+                return Promise.reject('Tối đa 200 chỗ');
+                }
+                return Promise.resolve();
+            },
+            },
+        ]}
         >
-          <InputNumber min={10} max={200} style={{ width: '100%' }} />
+        <InputNumber style={{ width: '100%' }} />
         </Form.Item>
 
-        {/* LOẠI PHÒNG */}
         <Form.Item
           name="loaiPhong"
           label="Loại phòng"
@@ -115,7 +120,6 @@ const ModalPhongHoc: React.FC<Props> = ({
           </Select>
         </Form.Item>
 
-        {/* NGƯỜI PHỤ TRÁCH */}
         <Form.Item
           name="nguoiPhuTrach"
           label="Người phụ trách"
